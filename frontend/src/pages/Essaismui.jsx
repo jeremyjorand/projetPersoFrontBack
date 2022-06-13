@@ -20,8 +20,9 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import { Link } from "react-router-dom";
 
-export default function Home(props) {
+export default function Home() {
   const [checked, setChecked] = useState(true);
   const [value, setValue] = useState("recents");
   const handleChange = (event) => {
@@ -50,7 +51,13 @@ export default function Home(props) {
     <ThemeProvider theme={theme}>
       <Buttonb colors="error" text="gallery" size="small" />
       <Buttonb colors="success" text="admin" />
-      <Buttonb colors="but1" text="WIM" size="large" />
+      <Buttonb
+        colors="but1"
+        text="WIM"
+        size="large"
+        onClick={<Link to="/" />}
+      />
+      <Link to="/" />
       <Box width={300}>
         <Slider
           size="small"
@@ -66,7 +73,7 @@ export default function Home(props) {
         inputProps={{ "aria-label": "controlled" }}
         color="but1"
       />
-      <SvgIcon {...props}>
+      <SvgIcon>
         <path d={CancelIcon} />
       </SvgIcon>
       <Chip icon={<CancelIcon />} label="Delete" />
@@ -110,10 +117,12 @@ export default function Home(props) {
             <Button
               variant="contained"
               sx={{ width: "50%" }}
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...bindTrigger(popupState)}
             >
               Dashboard
             </Button>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <Menu {...bindMenu(popupState)}>
               <MenuItem onClick={popupState.close}>Profile</MenuItem>
               <MenuItem onClick={popupState.close}>My account</MenuItem>
